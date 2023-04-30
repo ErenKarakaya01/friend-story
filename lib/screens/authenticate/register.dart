@@ -1,15 +1,14 @@
 import 'package:friend_story/services/auth.dart';
-import 'package:friend_story/services/database.dart';
 import 'package:friend_story/shared/constants.dart';
 import 'package:friend_story/shared/loading.dart';
 import 'package:flutter/material.dart';
 
 class Register extends StatefulWidget {
   final Function toggleView;
-  Register({required this.toggleView});
+  const Register({super.key, required this.toggleView});
 
   @override
-  _RegisterState createState() => _RegisterState();
+  State<Register> createState() => _RegisterState();
 }
 
 class _RegisterState extends State<Register> {
@@ -24,7 +23,6 @@ class _RegisterState extends State<Register> {
   String _surname = "";
   String _email = '';
   String _password = '';
-  String _confirmPassword = "";
   DateTime _dateOfBirth = DateTime(1900);
 
   @override
@@ -36,7 +34,7 @@ class _RegisterState extends State<Register> {
             appBar: AppBar(
               backgroundColor: Colors.blue[400],
               elevation: 0.0,
-              title: Text('Register'),
+              title: const Text('Register'),
             ),
             body: Stack(
               children: <Widget>[
@@ -59,8 +57,8 @@ class _RegisterState extends State<Register> {
                         child: Column(
                           children: <Widget>[
                             Container(
-                              margin: EdgeInsets.all(20),
-                              padding: EdgeInsets.all(10),
+                              margin: const EdgeInsets.all(20),
+                              padding: const EdgeInsets.all(10),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(100),
                                   border: Border.all(
@@ -81,7 +79,7 @@ class _RegisterState extends State<Register> {
                                 setState(() => _name = val.trim());
                               },
                             ),
-                            SizedBox(height: 20.0),
+                            const SizedBox(height: 20.0),
                             TextFormField(
                               decoration: textInputDecoration.copyWith(
                                   hintText: 'Surname'),
@@ -92,7 +90,7 @@ class _RegisterState extends State<Register> {
                                 setState(() => _surname = val.trim());
                               },
                             ),
-                            SizedBox(height: 20.0),
+                            const SizedBox(height: 20.0),
                             TextFormField(
                               decoration: textInputDecoration.copyWith(
                                   hintText: 'Email'),
@@ -102,7 +100,7 @@ class _RegisterState extends State<Register> {
                                 setState(() => _email = val.trim());
                               },
                             ),
-                            SizedBox(height: 20.0),
+                            const SizedBox(height: 20.0),
                             TextFormField(
                               decoration: textInputDecoration.copyWith(
                                   hintText: 'Password'),
@@ -114,7 +112,7 @@ class _RegisterState extends State<Register> {
                                 setState(() => _password = val.trim());
                               },
                             ),
-                            SizedBox(height: 20.0),
+                            const SizedBox(height: 20.0),
                             TextFormField(
                               decoration: textInputDecoration.copyWith(
                                   hintText: 'Confirm Password'),
@@ -122,11 +120,8 @@ class _RegisterState extends State<Register> {
                               validator: (val) => val!.trim() != _password
                                   ? "Passwords don't match"
                                   : null,
-                              onChanged: (val) {
-                                setState(() => _password = val.trim());
-                              },
                             ),
-                            SizedBox(height: 20.0),
+                            const SizedBox(height: 20.0),
                             TextFormField(
                               controller: dateController,
                               decoration: textInputDecoration.copyWith(
@@ -151,7 +146,7 @@ class _RegisterState extends State<Register> {
                                     : dateController.text;
                               },
                             ),
-                            SizedBox(height: 20.0),
+                            const SizedBox(height: 20.0),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -194,11 +189,11 @@ class _RegisterState extends State<Register> {
                                     }),
                               ],
                             ),
-                            SizedBox(height: 12.0),
+                            const SizedBox(height: 12.0),
                             Text(
                               error,
-                              style:
-                                  TextStyle(color: Colors.red, fontSize: 14.0),
+                              style: const TextStyle(
+                                  color: Colors.red, fontSize: 14.0),
                             )
                           ],
                         ),

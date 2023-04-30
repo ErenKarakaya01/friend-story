@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
   final Function toggleView;
-  SignIn({required this.toggleView});
+  const SignIn({super.key, required this.toggleView});
 
   @override
-  _SignInState createState() => _SignInState();
+  State<SignIn> createState() => _SignInState();
 }
 
 class _SignInState extends State<SignIn> {
@@ -31,6 +31,7 @@ class _SignInState extends State<SignIn> {
               backgroundColor: Colors.blue[400],
               elevation: 0.0,
               title: const Text('Sign In'),
+              centerTitle: true,
             ),
             body: Stack(children: <Widget>[
               Container(

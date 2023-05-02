@@ -1,7 +1,10 @@
+import 'package:friend_story/models/user.dart';
 import 'package:friend_story/services/auth.dart';
 import 'package:friend_story/shared/constants.dart';
 import 'package:friend_story/shared/loading.dart';
 import 'package:flutter/material.dart';
+
+import '../../services/database.dart';
 
 class Register extends StatefulWidget {
   final Function toggleView;
@@ -21,9 +24,16 @@ class _RegisterState extends State<Register> {
   // text field state
   String _name = "";
   String _surname = "";
+  String _username = "";
   String _email = '';
   String _password = '';
   DateTime _dateOfBirth = DateTime(1900);
+
+  @override
+  void dispose() {
+    dateController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +45,7 @@ class _RegisterState extends State<Register> {
               backgroundColor: Colors.blue[400],
               elevation: 0.0,
               title: const Text('Register'),
+              centerTitle: true,
             ),
             body: Stack(
               children: <Widget>[
@@ -88,6 +99,17 @@ class _RegisterState extends State<Register> {
                                   : null,
                               onChanged: (val) {
                                 setState(() => _surname = val.trim());
+                              },
+                            ),
+                            const SizedBox(height: 20.0),
+                            TextFormField(
+                              decoration: textInputDecoration.copyWith(
+                                  hintText: 'Username'),
+                              validator: (val) => val!.trim().isEmpty
+                                  ? 'Enter a username'
+                                  : null,
+                              onChanged: (val) {
+                                setState(() => _username = val.trim());
                               },
                             ),
                             const SizedBox(height: 20.0),
@@ -171,13 +193,25 @@ class _RegisterState extends State<Register> {
                                     onPressed: () async {
                                       if (_formKey.currentState!.validate()) {
                                         setState(() => loading = true);
+                                        UserData? user = await DatabaseService()
+                                            .getUserData(_username);
+
+                                        if (user != null) {
+                                          setState(() {
+                                            loading = false;
+                                            error = 'Username already exists';
+                                          });
+                                          return;
+                                        }
+
                                         dynamic result = await _auth
                                             .registerWithEmailAndPassword(
                                                 _email,
                                                 _password,
                                                 _name,
                                                 _surname,
-                                                _dateOfBirth);
+                                                _dateOfBirth,
+                                                _username);
                                         if (result == null) {
                                           setState(() {
                                             loading = false;

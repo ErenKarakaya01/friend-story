@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class UserModal {
   final String uid;
 
@@ -7,8 +9,14 @@ class UserModal {
 class UserData {
   final String uid;
   final String name;
-  final String sugars;
-  final int strength;
+  final String surname;
+  final String username;
+  final Timestamp dateOfBirth;
 
-  UserData({required this.uid, required this.sugars, required this.strength, required this.name});
+  UserData(
+      {required this.uid,
+      required this.name,
+      required this.surname,
+      required this.username,
+      required this.dateOfBirth});
 }

@@ -4,6 +4,7 @@ import "package:provider/provider.dart";
 
 import '../../models/story.dart';
 import '../../models/user.dart';
+import '../../services/auth.dart';
 import 'components/request_list.dart';
 
 class Requests extends StatefulWidget {
@@ -14,6 +15,8 @@ class Requests extends StatefulWidget {
 }
 
 class _RequestsState extends State<Requests> {
+  final AuthService _auth = AuthService();
+  
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserModal>(context);
@@ -21,13 +24,20 @@ class _RequestsState extends State<Requests> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Requests"),
-        backgroundColor: Colors.blue[400],
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.logout),
+            tooltip: 'Logout',
+            onPressed: () async {
+              await _auth.signOut();
+            },
+          ),
+        ],
       ),
       body: StreamProvider<List<Story>>.value(
         value: DatabaseService(
-          uid: user.uid,
-          isAccepted: false,
-        ).stories,
+          uid: user.uid,// false because we want to see unaccepted stories
+        ).requests,
         initialData: const [],
         child: const RequestList(),
       ),

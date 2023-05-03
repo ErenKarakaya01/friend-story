@@ -5,8 +5,7 @@ import "package:friend_story/models/story.dart";
 
 class DatabaseService {
   final String uid;
-  final bool isAccepted;
-  DatabaseService({this.uid = "", this.isAccepted = false});
+  DatabaseService({this.uid = ""});
 
   // collection reference
   final CollectionReference userCollection =
@@ -45,11 +44,20 @@ class DatabaseService {
     return users;
   }
 
-  // get story
+  // get requests stream
+  Stream<List<Story>> get requests {
+    return storyCollection
+        .where('friendUid', isEqualTo: uid)
+        .where('accepted', isEqualTo: false)
+        .snapshots(includeMetadataChanges: true)
+        .map(_storyDataFromSnapshot);
+  }
+
+  // get stories stream
   Stream<List<Story>> get stories {
     return storyCollection
         .where('friendUid', isEqualTo: uid)
-        .where('accepted', isEqualTo: isAccepted)
+        .where('accepted', isEqualTo: true)
         .snapshots(includeMetadataChanges: true)
         .map(_storyDataFromSnapshot);
   }

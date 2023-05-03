@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:friend_story/models/user.dart';
 import 'package:friend_story/services/database.dart';
 import 'package:provider/provider.dart';
+import 'package:random_avatar/random_avatar.dart';
 
 import '../../../models/story.dart';
 
@@ -21,7 +22,7 @@ class _RequestTileState extends State<RequestTile> {
   @override
   void initState() {
     super.initState();
-    DatabaseService().getUserDataByUid(widget.request.friendUid).then((friend) {
+    DatabaseService().getUserDataByUid(widget.request.userUid).then((friend) {
       setState(() {
         friendData = friend;
       });
@@ -32,9 +33,8 @@ class _RequestTileState extends State<RequestTile> {
   Widget build(BuildContext context) {
     final request = widget.request;
     return ExpansionTile(
-      leading: const CircleAvatar(
-        backgroundImage: AssetImage("assets/avatar.png"),
-      ),
+      leading: RandomAvatar(request.userUid,
+          trBackground: true, height: 50, width: 50),
       title: Text(friendData != null
           ? "${friendData!.name} ${friendData!.surname}"
           : ""),
@@ -61,53 +61,19 @@ class _RequestTileState extends State<RequestTile> {
             ),
           ],
         ),
-        SizedBox(height: 40),
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: Container(
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Text(
                 request.story,
               ),
             ),
           ),
         ),
-        SizedBox(height: 40),
       ],
     );
-
-    /* Container(
-      height: 100,
-      width: 100,
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Expanded(
-            child: ListTile(
-              leading: const CircleAvatar(
-                backgroundImage: AssetImage("assets/images/profile.png"),
-              ),
-              title: Text(friendData != null ? "${friendData!.name} ${friendData!.surname}" : ""),
-              subtitle: Text(request.meetDate.toDate().toString().substring(0, 10)),
-              trailing: Row(children: [
-                IconButton(
-                  onPressed: () {
-                    DatabaseService(uid: request.friendUid).acceptStory(request.storyId);
-                  },
-                  icon: const Icon(Icons.check),
-                ),
-                IconButton(
-                  onPressed: () {
-                    DatabaseService(uid: request.friendUid).rejectStory(request.storyId);
-                  },
-                  icon: const Icon(Icons.close),
-                ),
-              ],)
-            ),
-          ),
-        ),
-      ),
-    ); */
   }
 }

@@ -42,7 +42,7 @@ This project was developed in 5 days as a starter project, so contributions are 
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
 
-![WhatsApp Image 2023-05-03 at 15 19 05](https://user-images.githubusercontent.com/58625563/235930474-013b3ad4-58db-418a-94f1-57aa024b0fd2.jpeg) | widht=100
+![WhatsApp Image 2023-05-03 at 15 19 05](https://user-images.githubusercontent.com/58625563/235930474-013b3ad4-58db-418a-94f1-57aa024b0fd2.jpeg | widht=100) 
 ![WhatsApp Image 2023-05-03 at 15 19 05 (1)](https://user-images.githubusercontent.com/58625563/235930503-25f8811c-9d7b-48b7-a5e0-5b5f79f33218.jpeg)
 ![WhatsApp Image 2023-05-03 at 15 19 05 (2)](https://user-images.githubusercontent.com/58625563/235930522-205b73af-9b2b-46d1-bf22-e1af669887e0.jpeg)
 ![WhatsApp Image 2023-05-03 at 15 19 06](https://user-images.githubusercontent.com/58625563/235930537-56c8ff64-8e6c-4905-b208-afb95467c9fb.jpeg)

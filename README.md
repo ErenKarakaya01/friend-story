@@ -1,16 +1,39 @@
-# friend_story
+# FriendStory
 
-A new Flutter project.
+This is a Flutter and Firebase starter project that includes a register and login system, and allows users to write their thoughts about their friends, accept or reject thoughts, and display accepted thoughts from their friends. 
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+To run this project locally, you'll need to have [Flutter](https://flutter.dev/docs/get-started/install) installed on your machine. After cloning this repository, navigate to the project directory and run the following command to install the necessary dependencies:
 
-A few resources to get you started if this is your first Flutter project:
+```
+flutter pub get
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Next, you'll need to create a Firebase project and add your project's `google-services.json` file to the `android/app` directory and `GoogleService-Info.plist` to the `ios/Runner` directory.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Features
+
+- **Authentication**: The app allows users to register and login with email and password. 
+- **Add Friends**: Users can add friends by their email address.
+- **Thoughts**: Users can write their thoughts about their friends, accept or reject thoughts, and display accepted thoughts from their friends.
+- **Profile**: Users can view and edit their profile information.
+- **Notifications**: Users receive a notification when their thoughts are accepted by their friends.
+- **Dark Mode**: The app supports both light and dark mode.
+
+## Technologies Used
+
+- [Flutter](https://flutter.dev/) - Frontend framework
+- [Firebase](https://firebase.google.com/) - Backend and database
+- [Provider](https://pub.dev/packages/provider) - State management library
+- [Cloud Firestore](https://firebase.google.com/products/firestore) - NoSQL document database
+- [Firebase Authentication](https://firebase.google.com/products/auth) - Authentication service
+- [Firebase Cloud Messaging](https://firebase.google.com/products/cloud-messaging) - Notification service
+
+## Contributing
+
+This project was developed in 5 days as a starter project, so contributions are not expected. However, if you find a bug or have a suggestion for improvement, feel free to open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
